@@ -1,0 +1,14 @@
+swig
+pytest
+aenum
+torch
+gymnasium[box2d]
+ray[rllib]==2.5.1
+scikit-image
+pygame
+numba
+Gymnasium
+PyYAML
+GitPython
+tensorflow_probability
+imageio
