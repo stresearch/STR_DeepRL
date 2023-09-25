@@ -1,34 +1,36 @@
 
 
 ---
-# Assignment 3: Apply MARL Techniques to Solve Multi-Agent Stochastic Games  
+
+# Assignment 3: Apply MARL Techniques for Multi-Agent Stochastic Games
 
 ## Due Date
-- **Due Date:** Thursday, September 28, 9:00 PM
+- **Deadline:** Thursday, September 28, 9:00 PM
 
 ## Overview
-This assignment provides a hands-on introduction to develop Multi-Agent Systems to solve Stochastic Tasks with Multi-Agent Reinforcement Learning (MARL). This excersize provide practical solution to tackle therotical concepts. It is meant to as the test bed and equipped you with tricks and tools to build the blueprint to solve challenging and complex MARL problems. By the end of this assignment, you'll be equipped to:
+Embark on a journey to unravel the complexities of Multi-Agent Stochastic Tasks in this assignment. It's designed as a practical, hands-on exploration into the world of Multi-Agent Reinforcement Learning (MARL). Bridge the gap between theoretical concepts and practical solutions, providing you with the essential knowledge and tools to navigate the intricate landscape of MARL problems. Upon completion, you’ll be adept in:
 
-- Having the hands-on understanding of the three Multi-Agent Training Schemes:
+- **Understanding Three Key Multi-Agent Training Schemes:**
   - **Decentralized Training with Decentralized Execution (DTDE)**: Independent training & execution per agent without central coordination
   - **Centralized Training with Decentralized Execution (CTDE)**: Central training for joint policies, but agents act independently in execution
   - **Centralized Training with Centralized Execution (CTCE)**: Teams of homogeneous agents share policy, rewards, and parameters
-- Solving the following Game Models in both Collaborative and Competitive Tasks:
-  - Collaborative Task:
-    - Decentralized Partially-Observable Identical-Interest Stochastic Potential Game
-      - Model as potential games if agents have different rewards, mission and objectives 
-        - Agents can learn to coordinate to solve sub-tasks that contribute to the overall team objective
-  - Competitive Task:
-    - Decentralized Partially-Observable Zero-Sum Stochastic Games (1v1)
-    - Centralized Partially-Observable General-Sum Stochastic Team Games (2v2)
-- Design and Implement the following Deep RL Capabilities/Mechanics with RLlib:
-  - Restore Checkpoint trained in scenario with limited world dynamics and transfer the "skills" aka NN parameters to solve scneario with randomness
-  - Implement your Customized Torch PPO Policy to perform parameters sharing during trianing but independent execution during depolyment (CTDE)
-  - Implement Policy Self-Play Callback Function to train your main agent with a pool of legacy versions of the main agent
-- Apply Everything You Learned in the Class to Customize your best agent to compete in the STR MARL CUP (1v1)
+  
+- **Navigating Various Game Models in Collaborative and Competitive Tasks:**
+  - **Collaborative Task:**
+    - Engage in decentralized partially-observable identical-interest stochastic potential games, learning coordination for sub-task contribution to team objectives.
+  - **Competitive Task:**
+    - Master 1v1 decentralized partially-observable zero-sum stochastic games and 2v2 centralized partially-observable general-sum stochastic team games.
 
+- **Applied Advanced Deep RL Mechanics with RLlib:**
+  - Transfer "skills" or neural network parameters from limited world dynamics scenarios to more random ones.
+  - Craft a customized Torch PPO Policy for parameter sharing during training and independent execution during deployment (CTDE).
+  - Implement the Policy Self-Play Callback Function, train your main agent by playing against a pool of its legacy versions.
+  
+- **Participating in the STR MARL CUP (1v1):**
+  - Apply your comprehensive learning to customize and fine-tune your agent, gearing up for a friendly competition in the STR MARL CUP (1v1).
 
-The starter code for this assignment can be found [here](https://classroom.github.com/a/flIqv1Tb).
+Be prepared to delve deep and tackle real-world MARL challenges, armed with a robust set of skills and insights. Access the starter code for this enriching assignment [here](https://classroom.github.com/a/flIqv1Tb). Immerse yourself in the world of MARL and emerge proficient and prepared for future endeavors!
+The starter code for this assignment can be found [here](https://classroom.github.com/a/oexUimnn).
 
 
 ## Setup Instructions
