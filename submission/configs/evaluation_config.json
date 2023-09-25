@@ -1,0 +1,13 @@
+{
+    "team_policies_mapping": {
+        "red_0": "your_policy_name",
+        "red_1": "your_policy_name_v2"
+    },
+    "using_eval_scenarios" : false,
+
+    "default_DTDE_1v1_opponent_checkpoint" : "submission/pretrained_checkpoints/DTDE_1v1/PPO_MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1_a63bb_00000_0_2023-09-24_01-31-45/checkpoint_000200",
+    "default_CTCE_2v2_opponent_checkpoint" : "submission/pretrained_checkpoints/CTCE_2v2/PPO_MultiGrid-CompetativeRedBlueDoor-v3-CTCE-2v2_a9680_00000_0_2023-09-24_02-36-15/checkpoint_000130"
+
+   
+}
+

@@ -1,0 +1,156 @@
+Failure # 1 (occurred at 2023-09-24_03-27-01)
+[36mray::PPO.train()[39m (pid=730621, ip=10.1.60.66, actor_id=6888f68b7c5af8479471b9f301000000, repr=PPO)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 389, in train
+    raise skipped from exception_cause(skipped)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 386, in train
+    result = self.step()
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 803, in step
+    results, train_iter_ctx = self._run_one_training_iteration()
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 2853, in _run_one_training_iteration
+    results = self.training_step()
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/algorithms/ppo/ppo.py", line 403, in training_step
+    train_batch = synchronous_parallel_sample(
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/execution/rollout_ops.py", line 85, in synchronous_parallel_sample
+    sample_batches = worker_set.foreach_worker(
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 722, in foreach_worker
+    handle_remote_call_result_errors(remote_results, self._ignore_worker_failures)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 75, in handle_remote_call_result_errors
+    raise r.get()
+ray.exceptions.RayTaskError(ValueError): [36mray::RolloutWorker.apply()[39m (pid=730946, ip=10.1.60.66, actor_id=6c2b4fc7ad99eea2a9edfd3e01000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fc9cebae6e0>)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/utils/actor_manager.py", line 185, in apply
+    raise e
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/utils/actor_manager.py", line 176, in apply
+    return func(self, *args, **kwargs)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/execution/rollout_ops.py", line 86, in <lambda>
+    lambda w: w.sample(), local_worker=False, healthy_only=True
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/rollout_worker.py", line 915, in sample
+    batches = [self.input_reader.next()]
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/sampler.py", line 92, in next
+    batches = [self.get_data()]
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/sampler.py", line 277, in get_data
+    item = next(self._env_runner)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/env_runner_v2.py", line 323, in run
+    outputs = self.step()
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/env_runner_v2.py", line 349, in step
+    active_envs, to_eval, outputs = self._process_observations(
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/evaluation/env_runner_v2.py", line 616, in _process_observations
+    processed = policy.agent_connectors(acd_list)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/connectors/agent/pipeline.py", line 41, in __call__
+    ret = c(ret)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/connectors/connector.py", line 254, in __call__
+    return [self.transform(d) for d in acd_list]
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/connectors/connector.py", line 254, in <listcomp>
+    return [self.transform(d) for d in acd_list]
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/connectors/agent/obs_preproc.py", line 58, in transform
+    d[SampleBatch.NEXT_OBS] = self._preprocessor.transform(
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/models/preprocessors.py", line 278, in transform
+    self.check_shape(observation)
+  File "/proj/aaco/team/heng/env/miniconda3/envs/rl_class_env/lib/python3.10/site-packages/ray/rllib/models/preprocessors.py", line 74, in check_shape
+    raise ValueError(
+ValueError: Observation ([{'agent_id': 0, 'image': array([[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0]],
+
+       [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0]],
+
+       [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+         0, 0, 0]],
+
+       [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0]],
+
+       [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0]]], dtype=uint8), 'direction': 1, 'mission': Mission("Go open the door with the key")}, {'agent_id': 1, 'image': array([[[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+         1, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0]],
+
+       [[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0]],
+
+       [[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+         0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0]],
+
+       [[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+         0, 0, 0]],
+
+       [[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+         0, 0, 0]]], dtype=uint8), 'direction': 0, 'mission': Mission("Go move away the ball")}] dtype=None) outside given space (Tuple(Dict('agent_id': Discrete(2), 'direction': Discrete(4), 'image': Box(0, 1, (5, 5, 24), uint8), 'mission': MultiDiscrete([4])), Dict('agent_id': Discrete(2), 'direction': Discrete(4), 'image': Box(0, 1, (5, 5, 24), uint8), 'mission': MultiDiscrete([4]))))!

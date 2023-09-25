@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Manually Run Agent",
+            "type": "python",
+            "request": "launch",
+            "program": "multigrid/scripts/manual_control.py",
+            "args": [ "--env-id", "MultiGrid-CompetativeRedBlueDoor-v3-DTDE-Red-Single"
+        ],
+            "justMyCode": false
+        },
+        {
+            "name": "Train Agent",
+            "type": "python",
+            "request": "launch",
+            "program": "multigrid/scripts/train.py",
+            "args": ["--env", "MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1",
+                // "--lstm"
+            ],
+            "justMyCode": false
+        },
+        {
+            "name": "Visualize Trained Agent",
+            "type": "python",
+            "request": "launch",
+            "program": "multigrid/scripts/visualize.py",
+            "args": ["--env", "MultiGrid-CompetativeRedBlueDoor-v3-CTDE-Red", "--num-episodes", "10",
+                "--load-dir", "submission/ray_results/PPO/PPO_MultiGrid-CompetativeRedBlueDoor-v3-DTDE-Red-Single_XXXX/checkpoint_YYY/checkpoint-YYY",
+                    "--render-mode", "rgb_array",
+                    "--gif", "CTDE-red-testing",
+                    "--policies-to-eval", "red_0", "red_1",
+                    "--eval-config", "{\"team_policies_mapping\": {\"red_0\" : \"your_policy_name\" , \"red_1\" : \"your_policy_name\" }}"
+            ],
+            "justMyCode": false
+        },
+    ]
+}
+
+
