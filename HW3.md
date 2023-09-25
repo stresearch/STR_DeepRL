@@ -77,7 +77,7 @@ If you need more compute resource for the competition, please contact the instru
   ```
 
 ---
-## Task 1 - Enable Centralized Training with Centralized Execution(CTCE) with CentralizedCritic and TorchCentralizedCriticModel
+## Task 1 - Enable Centralized Training with Decentralized Execution with CentralizedCritic and TorchCentralizedCriticModel
 
 In this task, you will complete the implementation of PPO `CentralizedCritic` to train your CTDE agents to solve a collaborative task involving three sub-tasks: grabbing the Red key, removing the Blue Ball blocking the Red door, and unlocking the Red door with the Red key.
 
