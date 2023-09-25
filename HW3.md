@@ -215,7 +215,7 @@ python multigrid/scripts/visualize.py --env MultiGrid-CompetativeRedBlueDoor-v3-
 
 ---
 
-## Task 3 - Solving the Decentralized Partially-Observable Zero-Sum Stochastic Games (1v1) for STR MARL Competition
+## Task 3 - Solving the Decentralized Partially-Observable Zero-Sum Stochastic Games (1v1) for STR MARL Competition 🤖🏆
 In this task, you will solve a 1v1 Competitive Task, the same one as in HW2, but this time with a learning opponent, which turned the game from an MDP to a Stochastic Game.
  
 ### Understanding Policy Self-Play:
