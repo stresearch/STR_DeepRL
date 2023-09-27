@@ -159,51 +159,53 @@ def test_batch_evaluation():
         checkpoint_path_1 = agent_policies_checkpoints[policy1]
         checkpoint_path_2 = agent_policies_checkpoints[policy2]
 
-        # Define parameters for the test
-        env = "MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1"
-        if evaluation_config["using_eval_scenarios"]:
-            env += "-Eval"
+        envs = ["MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1", "MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1-Death_Match"]
 
-        scenario_name = env.split("-v3-")[1]
+        for env in envs:
 
-        # Fair evaluation for learned asymmetry behavior
-        for _ in range(2):
-            gif = f"{scenario_name}_{policy1}_as_Red_VS_{policy2}_as_Blue"
+            if evaluation_config["using_eval_scenarios"]:
+                env += "-Eval"
 
-            evaluation_config["team_policies_mapping"] = {}
-            evaluation_config["team_policies_mapping"]["red_0"] = policy1
-            evaluation_config["team_policies_mapping"]["blue_0"] = policy2
-            evaluation_config["default_DTDE_1v1_opponent_checkpoint"] = checkpoint_path_2
+            scenario_name = env.split("-v3-")[1]
 
-            policies_to_eval = ["red_0", "blue_0"]
+            # Fair evaluation for learned asymmetry behavior
+            for _ in range(2):
+                gif = f"{scenario_name}_{policy1}_as_Red_VS_{policy2}_as_Blue"
 
-            # Set argument
-            params = {
-                "algo": "PPO",
-                "framework": "torch",
-                "lstm": False,
-                "env": env,
-                "env_config": {},
-                "num_episodes": 10,
-                "load_dir": checkpoint_path_1,
-                "gif": gif,
-                "render_mode": "rgb_array",
-                "save_dir": SAVE_DIR,
-                "policies_to_eval": policies_to_eval,
-                "eval_config": evaluation_config,
-            }
+                evaluation_config["team_policies_mapping"] = {}
+                evaluation_config["team_policies_mapping"]["red_0"] = policy1
+                evaluation_config["team_policies_mapping"]["blue_0"] = policy2
+                evaluation_config["default_DTDE_1v1_opponent_checkpoint"] = checkpoint_path_2
 
-            args = argparse.Namespace(**params)
+                policies_to_eval = ["red_0", "blue_0"]
 
-            # Call the evaluation function
-            main_evaluation(args)
+                # Set argument
+                params = {
+                    "algo": "PPO",
+                    "framework": "torch",
+                    "lstm": False,
+                    "env": env,
+                    "env_config": {},
+                    "num_episodes": 10,
+                    "load_dir": checkpoint_path_1,
+                    "gif": gif,
+                    "render_mode": "rgb_array",
+                    "save_dir": SAVE_DIR,
+                    "policies_to_eval": policies_to_eval,
+                    "eval_config": evaluation_config,
+                }
 
-            # Check the generated evaluation reports
-            eval_report_path = os.path.join(args.save_dir, f"{gif}_eval_summary.csv")
+                args = argparse.Namespace(**params)
 
-            # Change Red-Blue asymmetry
-            policy1, policy2 = policy2, policy1
-            checkpoint_path_1, checkpoint_path_2 = checkpoint_path_2, checkpoint_path_1
+                # Call the evaluation function
+                main_evaluation(args)
 
-    # commit_and_push()
+                # Check the generated evaluation reports
+                eval_report_path = os.path.join(args.save_dir, f"{gif}_eval_summary.csv")
+
+                # Change Red-Blue asymmetry
+                policy1, policy2 = policy2, policy1
+                checkpoint_path_1, checkpoint_path_2 = checkpoint_path_2, checkpoint_path_1
+
+        # commit_and_push()
 
