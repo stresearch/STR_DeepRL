@@ -123,6 +123,7 @@ class CompetativeRedBlueDoorEnvV3(MultiGridEnv, MultiAgentEnv):
         has_obsticle: bool = False,
         death_match: bool = False,
         randomization: bool = False,
+        deadlock_no_Key: bool = False,
         reward_schemes: dict[str, int] = {"red": 1},
         policies_map: dict = None,
         team_policies_mapping: dict = None,
@@ -153,6 +154,7 @@ class CompetativeRedBlueDoorEnvV3(MultiGridEnv, MultiAgentEnv):
         self.death_match = death_match
         self.size = size
         self.randomization = randomization
+        self.deadlock_no_Key = deadlock_no_Key
         self.team_policies_mapping = team_policies_mapping
         # mission_space = MissionSpace.from_string("Open the door that match your agents' color")
         mission_space = MissionSpace(
@@ -233,7 +235,7 @@ class CompetativeRedBlueDoorEnvV3(MultiGridEnv, MultiAgentEnv):
 
         # Place keys in hallway
         # Fixed Key Positions
-        key_positions = {"red": (7, 4), "blue": (8, 3)}
+        key_positions = {"red": (7, 4), "blue": (8, 3)}  if not self.deadlock_no_Key else {"red": (1, 3), "blue": (14, 3)} 
         for key_color in color_sequence:
             if self.randomization:
                 self.place_obj(Key(color=key_color), top=room_top, size=room_size)
