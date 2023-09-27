@@ -302,6 +302,49 @@ python multigrid/scripts/visualize.py --env MultiGrid-CompetativeRedBlueDoor-v3-
 
 ---
 
+### Task 3.1 - STR MARL Competition 🤖🏆 
+
+#### Evaluation in STR MARL Competition 
+
+In this competition, we will evaluate all the submitted agents + policies, and ensuring each gets fair and comprehensive evaluation.
+
+#### Evaluation Format
+
+- **Test Utilized**: Similar to [test_batch_evaluation()](tests/test_evaluation.py)
+- **Match Making**: All submitted checkpoints and policies will play against each other at least once.
+- **Scenarios**: Two different scenarios for evaluation.
+- **Roles**: Each agent & policy will get the opportunity to play as the `Red` agent in each scenario match to reduce the effect of learned asymmetry behaviors.
+- **Episodes**: 10 episodes per scenario match.
+- **Ranking Criteria**: Agents will be ranked based on their win-rate and accumulated rewards over the matches.
+
+#### Evaluation Scenarios
+
+Prepare your agents for the following two scenarios:
+
+1. **MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1**
+   <figure style="text-align: center;">
+       <img src="images/HW_images/HW3/MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1.gif" alt="Local GIF" style="width:1000px;"/>
+       <figcaption style="text-align: center;">MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1</figcaption>
+   </figure>
+   
+2. **MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1-Death_Match**
+   <figure style="text-align: center;">
+       <img src="images/HW_images/HW3/MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1-Death_Matc.gif" alt="Local GIF" style="width:1000px;"/>
+       <figcaption style="text-align: center;">MultiGrid-CompetativeRedBlueDoor-v3-DTDE-1v1-Death_Match</figcaption>
+   </figure>
+
+#### Submission Instructions for STR MARL Competition 
+
+##### Submission Requirements
+
+- **Directory**: Submit only your best checkpoint in `submission/ray_results/1v1`.
+- **Legacy Policies**: Please DO RETAIN all legacy policies in the `1v1` directory.
+  
+> Note on RLlib Bug - The [Algorithm.load_checkpoint()](https://github.com/ray-project/ray/blob/master/rllib/algorithms/algorithm.py#L2145-L2151) function in Ray RLlib is currently limited to accepting only the checkpoint directory string. Despite the [Algorithm._checkpoint_info_to_algorithm_state()](https://github.com/ray-project/ray/blob/master/rllib/algorithms/algorithm.py#L2638-L2648) function allowing optional policy_ids, this is not reflected in the load_checkpoint() function. The bug will be reported to the Ray RLlib Team.
+
+
+---
+
 
 ## Task 4 (Optional) - Decentralized Partially-Observable Stochastic General-Sum Games (2v2)
 In this task, you will solve a 2v2 Competitive Task with mixed strategy. Noticed that the decentalized version of 2v2 can be a NEXPTIME-hard problem, since the population of players are small in our game, so this time we are going to train our agent in centalized method.
