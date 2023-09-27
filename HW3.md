@@ -338,7 +338,7 @@ Prepare your agents for the following two scenarios:
 ##### Submission Requirements
 
 - **Directory**: Submit only your best checkpoint in `submission/ray_results/1v1`.
-- **Legacy Policies**: Please DO RETAIN all legacy policies in the `1v1` directory.
+- **Legacy Policies**: Please DO RETAIN all legacy policies in your checkpoint directory.
   
 > Note on RLlib Bug - The [Algorithm.load_checkpoint()](https://github.com/ray-project/ray/blob/master/rllib/algorithms/algorithm.py#L2145-L2151) function in Ray RLlib is currently limited to accepting only the checkpoint directory string. Despite the [Algorithm._checkpoint_info_to_algorithm_state()](https://github.com/ray-project/ray/blob/master/rllib/algorithms/algorithm.py#L2638-L2648) function allowing optional policy_ids, this is not reflected in the load_checkpoint() function. The bug will be reported to the Ray RLlib Team.
 
